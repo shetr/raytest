@@ -1,1 +1,5 @@
 build
+imgui.ini
+raytest.exe
+raytest_d.exe
+raytest_d.pdb

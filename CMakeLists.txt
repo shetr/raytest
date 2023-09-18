@@ -7,6 +7,23 @@ project(RAYTEST
 
 set(CMAKE_CXX_STANDARD 17)
 
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    add_compile_definitions(
+        $<$<CONFIG:Debug>:CONFIG_DEBUG>
+        $<$<CONFIG:Release>:CONFIG_RELEASE>
+    )
+
+    if(CMAKE_SYSTEM_NAME MATCHES "Windows")
+    add_compile_definitions(OS_WINDOWS)
+    endif()
+    if(CMAKE_SYSTEM_NAME MATCHES "Linux")
+    add_compile_definitions(OS_LINUX)
+    endif()
+    if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
+    add_compile_definitions(OS_APPLE)
+    endif()
+endif()
+
 find_package(OpenMP)
 if (OPENMP_FOUND)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
